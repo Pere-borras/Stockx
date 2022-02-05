@@ -1,5 +1,6 @@
 package edu.poniperro.stockx.appx;
 
+import edu.poniperro.stockx.domain.item.Ask;
 import edu.poniperro.stockx.domain.item.Bid;
 import edu.poniperro.stockx.domain.item.Item;
 import edu.poniperro.stockx.domain.item.Sneaker;
@@ -49,6 +50,19 @@ public class Stockx {
         sneaker.add(new Bid("9.5", 479));
         sneaker.add(new Bid("13", 338));
         sneaker.add(new Bid("9.5", 480));
+
+        /**
+         * Crear asks
+         * y añadirlas a la zapatilla
+         * en sus offers.
+         */
+
+        Ask ask = new Ask("13", 288);
+        sneaker.add(ask);
+        sneaker.add(new Ask("6", 600));
+        sneaker.add(new Ask("9.5", 333));
+        sneaker.add(new Ask("9.5", 340));
+        sneaker.add(new Ask("13", 330));
 
 
     }
