@@ -11,8 +11,7 @@ public class Bid implements Offer {
 
     @Override
     public String toString() {
-        return "Size -> " + this.size + "\n"
-                + "Bid -> " + this.bid;
+        return "\t" + "\t" + this.size + "\t" + this.bid + "\n";
     }
 
     @Override
@@ -23,6 +22,19 @@ public class Bid implements Offer {
     @Override
     public int value() {
         return this.bid;
+    }
+
+    @Override
+    public int compareTo(Offer bid) {
+        if (this.bid > bid.value()) {
+            return 1;
+        }
+        else if (this.bid > bid.value()){
+            return 0;
+        }
+        else {
+            return -1;
+        }
     }
 
 }
