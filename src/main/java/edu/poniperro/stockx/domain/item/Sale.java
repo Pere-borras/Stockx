@@ -29,7 +29,7 @@ public class Sale implements Offer {
         if (this.price > sale.value()) {
             return 1;
         }
-        else if (this.price > sale.value()){
+        else if (this.price == sale.value()){
             return 0;
         }
         else {

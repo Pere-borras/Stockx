@@ -29,7 +29,7 @@ public class Bid implements Offer {
         if (this.bid > bid.value()) {
             return 1;
         }
-        else if (this.bid > bid.value()){
+        else if (this.bid == bid.value()){
             return 0;
         }
         else {

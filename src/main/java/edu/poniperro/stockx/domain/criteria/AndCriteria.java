@@ -2,34 +2,31 @@ package edu.poniperro.stockx.domain.criteria;
 
 import edu.poniperro.stockx.domain.item.Item;
 import edu.poniperro.stockx.domain.item.Offer;
-import edu.poniperro.stockx.domain.item.Sale;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class AndCriteria implements Criteria {
     private Criteria criteria;
     private Criteria anotherCriteria;
 
-    public AndCriteria(Criteria size, Criteria sales) {
-        this.criteria = size;
-        this.anotherCriteria = sales;
+    public AndCriteria(Criteria criteria, Criteria anotherCriteria) {
+        this.criteria = criteria;
+        this.anotherCriteria = anotherCriteria;
     }
 
     @Override
     public List<Offer> checkCriteria(Item item) {
-        ArrayList<Offer> lista_anotherCriteria = new ArrayList<Offer>(anotherCriteria.checkCriteria(item));
-        ArrayList<Offer> lista_criteria = new ArrayList<Offer>(criteria.checkCriteria(item));
-        ArrayList<Offer> lista_filtrada = new ArrayList<Offer>();
+        List<Offer> lista_anotherCriteria = new ArrayList<Offer>(anotherCriteria.checkCriteria(item));
+        List<Offer> lista_criteria = new ArrayList<Offer>(criteria.checkCriteria(item));
 
-        int index = 0;
-        for (Offer oferta : lista_anotherCriteria) {
-            if (oferta.size() == lista_criteria.get(index).size()) {
-                lista_filtrada.add(oferta);
-            }
-            index++;
-        }
+        Stream<Offer> lista_filtrada = lista_anotherCriteria.
+                stream().
+                filter(o -> o.size().equals(lista_criteria.get(0).size()));
 
-        return lista_filtrada;
+        return lista_filtrada.collect(Collectors.toList());
     }
 }

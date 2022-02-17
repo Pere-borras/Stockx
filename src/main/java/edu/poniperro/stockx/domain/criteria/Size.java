@@ -5,6 +5,7 @@ import edu.poniperro.stockx.domain.item.Offer;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Size implements Criteria {
     String size;
@@ -15,13 +16,8 @@ public class Size implements Criteria {
 
     @Override
     public List<Offer> checkCriteria(Item item) {
-        ArrayList<Offer> lista_size = new ArrayList<Offer>();
-
-        for (Offer oferta : item.offers()) {
-            if (oferta.size().equals(this.size)) {
-                lista_size.add(oferta);
-            }
-        }
-        return lista_size;
+        return item.offers().stream().
+                filter(o -> o.size().equals(this.size)).
+                collect(Collectors.toList());
     }
 }

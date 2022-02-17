@@ -22,6 +22,7 @@ public class Max implements Criteria {
         Optional<Offer> offer = andCriteria.checkCriteria(item)
                 .stream()
                 .max(Offer::compareTo);
+
         return offer.isPresent()? List.of(offer.get()) : List.of();
         }
 }

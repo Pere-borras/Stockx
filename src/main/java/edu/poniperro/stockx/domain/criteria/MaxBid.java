@@ -7,6 +7,7 @@ import edu.poniperro.stockx.domain.item.Offer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class MaxBid implements Criteria {
 
@@ -14,32 +15,13 @@ public class MaxBid implements Criteria {
 
     @Override
     public List<Offer> checkCriteria(Item item) {
-        ArrayList<Offer> lista_bids = new ArrayList<Offer>();
-        ArrayList<Offer> maxbid = new ArrayList<Offer>();
+        List<Offer> maxbid = item.offers().
+                stream().
+                filter(o -> o instanceof Bid).
+                max(Offer::compareTo).
+                stream().
+                collect(Collectors.toList());
 
-        for (Offer oferta : item.offers()) {
-            if (oferta instanceof Bid) {
-                lista_bids.add(oferta);
-            }
-        }
-
-        int index = 1;
-        for (Offer oferta : lista_bids) {
-            if (index >= lista_bids.size()) {
-                break;
-            }
-
-            if (oferta.value() > lista_bids.get(index).value());{
-                if (maxbid.isEmpty()) {
-                    maxbid.add(oferta);
-                }
-                else if (maxbid.get(0).value() < oferta.value()){
-                    maxbid.set(0, oferta);
-                }
-            }
-
-            index++;
-        }
         return maxbid;
 
     }

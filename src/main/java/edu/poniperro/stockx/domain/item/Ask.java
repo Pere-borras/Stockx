@@ -1,8 +1,5 @@
 package edu.poniperro.stockx.domain.item;
 
-import java.util.ArrayList;
-import java.util.Optional;
-
 public class Ask implements Offer {
     private String size;
     private int ask;
@@ -11,12 +8,6 @@ public class Ask implements Offer {
         this.size = size;
         this.ask = ask;
     }
-
-    /**@Override
-    public int compareTo(Offer oferta) {
-        Optional <Offer> valor =
-        return oferta.compareTo(oferta.value());
-    }*/
 
     @Override
     public int value() {
@@ -33,7 +24,7 @@ public class Ask implements Offer {
         if (this.ask > ask.value()) {
             return 1;
         }
-        else if (this.ask > ask.value()){
+        else if (this.ask == ask.value()){
             return 0;
         }
         else {
